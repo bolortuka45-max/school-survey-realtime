@@ -33,65 +33,23 @@ function LoginPage() {
       return;
     }
 
-    alert(`✅ Сайн байна уу, ${student.name}! Амжилттай нэвтэрлээ.`);
+    alert(`✅ Сайн байна уу, ${student.name}!`);
     setCode("");
     navigate("/selection");
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        background: "linear-gradient(135deg, #fceabb, #f8b500)",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          background: "white",
-          padding: "40px",
-          borderRadius: "15px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          textAlign: "center",
-          minWidth: "300px",
-        }}
-      >
-        <h1 style={{ marginBottom: "20px", color: "#333" }}>Сурагчийн нэвтрэх хэсэг</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            placeholder="Сурагчийн кодоо оруулна уу"
-            style={{
-              padding: "10px",
-              fontSize: "16px",
-              width: "100%",
-              marginBottom: "15px",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
-            }}
-          />
-          <button
-            type="submit"
-            style={{
-              padding: "10px 20px",
-              fontSize: "16px",
-              backgroundColor: "#4CAF50",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              width: "100%",
-            }}
-          >
-            Нэвтрэх
-          </button>
-        </form>
-      </div>
+    <div style={{ padding: 20, fontFamily: "sans-serif" }}>
+      <h1>Сурагчийн нэвтрэх хэсэг</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          placeholder="Сурагчийн кодоо оруулна уу"
+        />
+        <button type="submit">Нэвтрэх</button>
+      </form>
     </div>
   );
 }
