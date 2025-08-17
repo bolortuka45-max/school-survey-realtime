@@ -24,14 +24,12 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const student = students.find((s) => s.code === code);
     if (!student) {
       alert("❌ Буруу код байна!");
       return;
     }
 
-    // Backend URL-г өөрийн Vercel backend URL-ээр солино
     await fetch("https://YOUR_VERCEL_BACKEND_URL/api/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,31 +45,60 @@ function LoginPage() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "sans-serif" }}>
-      <h1>Сурагчийн нэвтрэх хэсэг</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="Сурагчийн кодоо оруулна уу"
-          style={{ padding: "10px", fontSize: "16px" }}
-        />
-        <button
-          type="submit"
-          style={{
-            marginLeft: "10px",
-            padding: "10px 20px",
-            fontSize: "16px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Нэвтрэх
-        </button>
-      </form>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(to right, #89f7fe, #66a6ff)", // хөнгөн өнгө
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "40px 60px",
+          borderRadius: "15px",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+          textAlign: "center",
+          minWidth: "320px",
+        }}
+      >
+        <h1 style={{ marginBottom: "20px", color: "#333" }}>
+          Сурагчийн нэвтрэх хэсэг
+        </h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Сурагчийн кодоо оруулна уу"
+            style={{
+              padding: "12px",
+              fontSize: "16px",
+              width: "100%",
+              marginBottom: "20px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "12px",
+              fontSize: "16px",
+              backgroundColor: "#4CAF50",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            Нэвтрэх
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
