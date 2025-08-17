@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const students = [
   { name: "Х.Амарбаясгалан", code: "1011" },
@@ -21,16 +22,20 @@ const students = [
 
 function LoginPage() {
   const [code, setCode] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const student = students.find((s) => s.code === code);
+
     if (!student) {
       alert("❌ Буруу код байна!");
       return;
     }
+
     alert(`✅ Сайн байна уу, ${student.name}! Амжилттай нэвтэрлээ.`);
     setCode("");
+    navigate("/selection");
   };
 
   return (
