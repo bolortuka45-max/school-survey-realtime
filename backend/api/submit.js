@@ -1,5 +1,5 @@
 const { google } = require('googleapis');
-const keys = require('../../service-account.json'); // JSON key файлын зам
+const keys = require('../../service-account.json'); // Service Account JSON
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).send('Method not allowed');
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     );
 
     const gsapi = google.sheets({ version: 'v4', auth: client });
-    const spreadsheetId = 'YOUR_SPREADSHEET_ID';
+    const spreadsheetId = '1ie9fVrR4_O0XOVJ_hzjrxDtJaH1YlfrWcUidSiCdoiw'; // Google Sheets ID-г оруул
 
     await gsapi.spreadsheets.values.append({
       spreadsheetId,
@@ -26,8 +26,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, error: err });
+    console.error(err);
+    res.status(500).json({ success: false, error: err.message });
   }
 }
-
