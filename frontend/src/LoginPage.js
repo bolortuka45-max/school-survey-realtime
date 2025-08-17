@@ -29,17 +29,6 @@ function LoginPage() {
       alert("❌ Буруу код байна!");
       return;
     }
-
-    await fetch("https://YOUR_BACKEND_URL/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: student.name,
-        code: student.code,
-        timestamp: Date.now(),
-      }),
-    });
-
     alert(`✅ Сайн байна уу, ${student.name}! Амжилттай нэвтэрлээ.`);
     setCode("");
   };
@@ -47,29 +36,25 @@ function LoginPage() {
   return (
     <div
       style={{
-        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        height: "100vh",
+        background: "linear-gradient(135deg, #fceabb, #f8b500)",
+        fontFamily: "Arial, sans-serif",
       }}
     >
       <div
         style={{
-          backgroundColor: "white",
-          padding: "50px 40px",
-          borderRadius: "20px",
-          boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
+          background: "white",
+          padding: "40px",
+          borderRadius: "15px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
           textAlign: "center",
-          width: "100%",
-          maxWidth: "400px",
-          transition: "transform 0.3s",
+          minWidth: "300px",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
-        <h1 style={{ marginBottom: "30px", color: "#333" }}>Сурагчийн нэвтрэх хэсэг</h1>
+        <h1 style={{ marginBottom: "20px", color: "#333" }}>Сурагчийн нэвтрэх хэсэг</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -77,33 +62,26 @@ function LoginPage() {
             onChange={(e) => setCode(e.target.value)}
             placeholder="Сурагчийн кодоо оруулна уу"
             style={{
-              padding: "15px",
+              padding: "10px",
               fontSize: "16px",
               width: "100%",
-              marginBottom: "25px",
-              borderRadius: "10px",
+              marginBottom: "15px",
+              borderRadius: "8px",
               border: "1px solid #ccc",
-              outline: "none",
-              transition: "border-color 0.3s",
             }}
-            onFocus={(e) => (e.target.style.borderColor = "#4CAF50")}
-            onBlur={(e) => (e.target.style.borderColor = "#ccc")}
           />
           <button
             type="submit"
             style={{
-              width: "100%",
-              padding: "15px",
+              padding: "10px 20px",
               fontSize: "16px",
               backgroundColor: "#4CAF50",
               color: "white",
               border: "none",
-              borderRadius: "10px",
+              borderRadius: "8px",
               cursor: "pointer",
-              transition: "background-color 0.3s",
+              width: "100%",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#45a049")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#4CAF50")}
           >
             Нэвтрэх
           </button>
