@@ -5,13 +5,31 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch('https://YOUR_BACKEND_URL/submit', {  // Backend URL-ээ оруулна
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, timestamp: Date.now() }),
-    });
-    alert('Амжилттай submit хийлээ!');
-    setCode('');
+
+    try {
+      // 1️⃣ Vercel backend API руу POST request
+      const response = await fetch('https://school-survey-realtime.vercel.app
+', { // энд API URL-г оруулна
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, timestamp: Date.now() }),
+      });
+
+      const result = await response.json();
+
+      // 2️⃣ Амжилттай submit болсны дараа мэдэгдэл
+      if (result.success) {
+        alert('Амжилттай submit хийлээ!');
+      } else {
+        alert('Алдаа гарлаа: ' + result.error);
+      }
+
+      // 3️⃣ Input-г хоослох
+      setCode('');
+    } catch (err) {
+      console.error(err);
+      alert('Алдаа гарлаа, дахин оролдоно уу!');
+    }
   };
 
   return (
@@ -31,4 +49,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
