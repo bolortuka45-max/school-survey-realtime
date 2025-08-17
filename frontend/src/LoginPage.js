@@ -26,13 +26,13 @@ function LoginPage() {
     e.preventDefault();
 
     const student = students.find((s) => s.code === code);
-
     if (!student) {
       alert("❌ Буруу код байна!");
       return;
     }
 
-    await fetch("https://YOUR_BACKEND_URL/submit", {
+    // Backend URL-г өөрийн Vercel backend URL-ээр солино
+    await fetch("https://YOUR_VERCEL_BACKEND_URL/api/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
