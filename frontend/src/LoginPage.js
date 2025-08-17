@@ -17,7 +17,7 @@ const students = [
   { name: "Ө.Хүслэнбаяр", code: "0376" },
   { name: "Х.Бадар-Ууган", code: "0816" },
   { name: "Н.Нандин-Эрдэнэ", code: "2106" },
-  { name: "Б.Батцэцэг", code: "0147" },
+  { name: "Б.Батцэцэг", code: "0147" }
 ];
 
 function LoginPage() {
@@ -27,28 +27,37 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const student = students.find((s) => s.code === code);
-
     if (!student) {
       alert("❌ Буруу код байна!");
       return;
     }
-
-    alert(`✅ Сайн байна уу, ${student.name}!`);
+    alert(`✅ Сайн байна уу, ${student.name}! Амжилттай нэвтэрлээ.`);
     setCode("");
     navigate("/selection");
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "sans-serif" }}>
-      <h1>Сурагчийн нэвтрэх хэсэг</h1>
-      <form onSubmit={handleSubmit}>
+    <div style={{
+      display: "flex", justifyContent: "center", alignItems: "center",
+      height: "100vh", backgroundColor: "#f0f4f8", fontFamily: "sans-serif"
+    }}>
+      <form onSubmit={handleSubmit} style={{
+        padding: "40px", borderRadius: "10px", backgroundColor: "white",
+        boxShadow: "0 4px 8px rgba(0,0,0,0.2)"
+      }}>
+        <h1 style={{ marginBottom: "20px", textAlign: "center" }}>Сурагчийн код</h1>
         <input
           type="text"
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder="Сурагчийн кодоо оруулна уу"
+          style={{ padding: "10px", width: "100%", marginBottom: "20px", fontSize: "16px" }}
         />
-        <button type="submit">Нэвтрэх</button>
+        <button type="submit" style={{
+          width: "100%", padding: "10px", fontSize: "16px",
+          backgroundColor: "#4CAF50", color: "white", border: "none",
+          borderRadius: "5px"
+        }}>Нэвтрэх</button>
       </form>
     </div>
   );
